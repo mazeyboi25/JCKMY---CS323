@@ -24,11 +24,3 @@ During implementation, challenges included handling synchronization, avoiding ra
 Additionally, overhead from thread creation, synchronization, and merging results could reduce performance benefits if not handled efficiently.
 Overall, parallelism was most useful for large, independent computations, while for smaller or simpler tasks, it was often unnecessary and sometimes even less efficient than sequential execution.
 
-## Jeff Justin Bonior
-In this activity, I understood better how sequential and parallel algorithms actually behave when we implement them ourselves. 
-Sequential algorithms like merge sort and linear search were more straightforward since they follow one path from start to finish.
-When we tried the parallel versions, it became a bit more complicated because we had to split the data and run multiple processes at the same time,
-then combine the results correctly. During testing, I saw that parallel is not always faster. For smaller data, it sometimes took longer because 
-of extra work like creating processes and handling communication. But when the data became larger, the parallel version started to perform better 
-since the tasks were shared. From this, I learned that parallel algorithms can help improve performance, but only when the problem is large enough, 
-while sequential ones are still useful for simpler or smaller tasks.
