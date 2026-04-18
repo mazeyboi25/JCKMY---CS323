@@ -42,7 +42,7 @@ def merge_sort(arr):
     return merged
 
 
-    # ---------------- SEARCH (SEQUENTIAL) ----------------
+# Sequential Search
 def linear_search(arr, target):
     idx = -1
     for i in range(len(arr)):
@@ -52,7 +52,7 @@ def linear_search(arr, target):
     return idx
 
 
-# ---------------- PARALLEL SORT ----------------
+# Parallel Sort
 def parallel_merge_sort(data):
     # split into 4 parts
     size = len(data)
