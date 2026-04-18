@@ -168,3 +168,29 @@ def time_search(data, target, use_parallel):
         linear_search(data, target)
 
     return time.time() - t0
+
+# Main
+def run_tests():
+    sizes = [1000, 100000, 1000000]
+
+    for size in sizes:
+        print(f"\nDataset Size: {size}")
+
+        data = generate_random_data(size)
+        target = data[size // 2]
+
+        seq_sort = measure_sort_time(data.copy(), False)
+        par_sort = measure_sort_time(data.copy(), True)
+
+        seq_search = measure_search_time(data, target, False)
+        par_search = measure_search_time(data, target, True)
+
+        print(f"Sequential Sort:   {seq_sort:.6f} sec")
+        print(f"Parallel Sort:     {par_sort:.6f} sec")
+        print(f"Sequential Search: {seq_search:.6f} sec")
+        print(f"Parallel Search:   {par_search:.6f} sec")
+
+
+if __name__ == "__main__":
+    run_tests()
+    integrate everything into main program and run tests on different dataset sizes
