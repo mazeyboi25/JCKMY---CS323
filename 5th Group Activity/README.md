@@ -41,4 +41,4 @@
  In this implementation, I observed differences between sequential and parallel execution in terms of performance. The sequential version performed better on smaller datasets due to lower overhead, while the parallel version was more effective only for larger datasets where the workload could be divided. Although parallel merge sort showed potential speedup as dataset size increased, the improvement was limited by overhead from process creation, data splitting, and merging. A key challenge was handling multiprocessing in Python, especially function pickling and ensuring worker functions were properly defined. I also learned that synchronization and merging add computational cost that can reduce the benefits of parallelism. Overall, parallel execution is useful for large datasets but not for smaller tasks like linear search, where the overhead outweighs the gains.
 
 # DEMO GIF
-![alt text](assets/demo.gif)
+![alt text](5th Group Activity/assets/demo.gif)
