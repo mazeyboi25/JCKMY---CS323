@@ -110,3 +110,61 @@ def merge(a, b):
         res.extend(b[j:])
 
     return res
+
+# Parallel Search
+def parallel_search(data, target):
+    size = len(data)
+    step = size // 4
+    q = Queue()
+
+    def worker(sub, offset):
+        for i, v in enumerate(sub):
+            if v == target:
+                q.put(i + offset)
+                return
+        q.put(-1)
+
+    procs = []
+    for i in range(4):
+        start = i * step
+        if i == 3:
+            sub = data[start:]
+        else:
+            sub = data[start:start + step]
+
+        p = Process(target=worker, args=(sub, start))
+        procs.append(p)
+        p.start()
+
+    found = -1
+    for _ in procs:
+        res = q.get()
+        if res != -1:
+            found = res  # last one wins 
+
+    for p in procs:
+        p.join()
+
+    return found
+ 
+# Timing
+def time_sort(data, use_parallel):
+    t0 = time.time()
+
+    if use_parallel:
+        parallel_merge_sort(data)
+    else:
+        merge_sort(data)
+
+    return time.time() - t0
+
+
+def time_search(data, target, use_parallel):
+    t0 = time.time()
+
+    if use_parallel:
+        parallel_search(data, target)
+    else:
+        linear_search(data, target)
+
+    return time.time() - t0
