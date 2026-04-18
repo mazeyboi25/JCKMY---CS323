@@ -1,11 +1,10 @@
-# Guide for Reflection
-## - Differences observed between sequential and parallel execution
-## - Performance behavior across dataset sizes
-## - Challenges encountered during implementation
-## - Insights about overhead, synchronization, or merging
-## - Situations where parallelism was beneficial or unnecessary
+# - Differences observed between sequential and parallel execution
+# - Performance behavior across dataset sizes
+# - Challenges encountered during implementation
+# - Insights about overhead, synchronization, or merging
+# - Situations where parallelism was beneficial or unnecessary
 
-### Cielo Salas
+## Cielo Salas
  In this activity, I learned the difference between sequential and parallel algorithms by implementing both. 
  A sequential algorithm runs step by step in a single flow, while a parallel algorithm divides the work into smaller parts that can run at the same time.
  For this task, we used merge sort as our sequential sorting algorithm and linear search for searching. 
@@ -18,15 +17,12 @@
  It depends on the size of the data and the cost of managing multiple processes. 
  Sequential algorithms are simpler and easier to implement, while parallel algorithms can improve performance when used properly.
 
-### John Meinard Lumanas
- Sequential execution was simpler and easier to debug, while parallel execution allowed tasks to run simultaneously but required careful thread management and synchronization.
- In terms of performance, parallel execution showed little to no improvement on small datasets due to overhead, but provided significant speed gains as dataset size increased.
- During implementation, challenges included handling synchronization, avoiding race conditions, and ensuring that work was evenly distributed among threads.
- Additionally, overhead from thread creation, synchronization, and merging results could reduce performance benefits if not handled efficiently.
- Overall, parallelism was most useful for large, independent computations, while for smaller or simpler tasks, it was often unnecessary and sometimes even less efficient than sequential execution.
-
-### Kyle Ochavillo
- I learned from this task that the benefits of sequential and parallel algorithms differ depending on the circumstances. While parallel versions were more difficult to execute because we had to partition the data and handle many processes, sequential algorithms like merge sort and linear search were simpler to implement because everything happens step by step. During testing, I discovered that parallel algorithms are not always quicker, on smaller datasets, they were occasionally slower because of overhead like communication and process creation. However, because the load was distributed, the parallel version performed better for bigger datasets. This helped me understand that parallelism is helpful but not always required, and that the best strategy relies on the volume of data and the cost of process control.
+## John Meinard Lumanas
+Sequential execution was simpler and easier to debug, while parallel execution allowed tasks to run simultaneously but required careful thread management and synchronization.
+In terms of performance, parallel execution showed little to no improvement on small datasets due to overhead, but provided significant speed gains as dataset size increased.
+During implementation, challenges included handling synchronization, avoiding race conditions, and ensuring that work was evenly distributed among threads.
+Additionally, overhead from thread creation, synchronization, and merging results could reduce performance benefits if not handled efficiently.
+Overall, parallelism was most useful for large, independent computations, while for smaller or simpler tasks, it was often unnecessary and sometimes even less efficient than sequential execution.
 
 ## Jeff Justin Bonior
 In this activity, I understood better how sequential and parallel algorithms actually behave when we implement them ourselves. 
