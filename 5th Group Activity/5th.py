@@ -2,11 +2,23 @@ import random
 import time
 from multiprocessing import Process, Queue
 
+def worker_sort(sub, q):
+    sorted_part = merge_sort(sub)
+    q.put(sorted_part)
+
+def worker_search(sub, target, q, offset):
+    for i, v in enumerate(sub):
+        if v == target:
+            q.put(i + offset)
+            return
+    q.put(-1)
+
+
 # Dataset 
 def make_data(n):
     data = []
     for _ in range(n):
-        data.append(random.randint(1, 100000)) # Medium dataset
+        data.append(random.randint(1, 10000)) # Medium dataset
     return data
 
 
@@ -69,13 +81,9 @@ def parallel_merge_sort(data):
 
     q = Queue()
 
-    def worker(sub):
-        sorted_part = merge_sort(sub)
-        q.put(sorted_part)
-
     procs = []
     for c in chunks:
-        p = Process(target=worker, args=(c,))
+        p = Process(target=worker_sort, args=(c, q))
         procs.append(p)
         p.start()
 
@@ -117,13 +125,6 @@ def parallel_search(data, target):
     step = size // 4
     q = Queue()
 
-    def worker(sub, offset):
-        for i, v in enumerate(sub):
-            if v == target:
-                q.put(i + offset)
-                return
-        q.put(-1)
-
     procs = []
     for i in range(4):
         start = i * step
@@ -132,7 +133,7 @@ def parallel_search(data, target):
         else:
             sub = data[start:start + step]
 
-        p = Process(target=worker, args=(sub, start))
+        p = Process(target=worker_search, args=(sub, target, q, start))
         procs.append(p)
         p.start()
 
@@ -187,11 +188,12 @@ def main():
         t3 = time_search(data, target, False)
         t4 = time_search(data, target, True)
 
-        print("seq sort:", round(t1, 6))
-        print("par sort:", round(t2, 6))
-        print("seq search:", round(t3, 6))
-        print("par search:", round(t4, 6))
+        print("Sequential Sort:", round(t1, 6))
+        print("Parallel Sort:", round(t2, 6))
+        print("Sequential Search:", round(t3, 6))
+        print("Parallel Search:", round(t4, 6))
 
 
 if __name__ == "__main__":
     main()
+    
